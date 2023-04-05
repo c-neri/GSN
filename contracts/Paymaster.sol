@@ -36,7 +36,7 @@ contract PaymasterContract is BasePaymaster {
     virtual
     returns (bytes memory context, bool revertOnRecipientRevert) {
         (relayRequest, signature, approvalData, maxPossibleGas);
-        require(relayRequest.request.from==userAddress, "wrong target");
+        // require(relayRequest.request.from==userAddress, "wrong target");
         require(relayRequest.request.to==target, "wrong user");
 	//returning "true" means this paymaster accepts all requests that
 	// are not rejected by the recipient contract.
