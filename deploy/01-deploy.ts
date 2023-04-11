@@ -15,7 +15,7 @@ const deploy: DeployFunction = async ({ getNamedAccounts, deployments }) => {
     let waitConfirmations = 1
 
     //DEPLOY
-    await deploy("Gasless", {
+    const target = await deploy("Gasless", {
         from: deployer,
         args:[forwarderAddress],
         waitConfirmations,
@@ -33,6 +33,7 @@ const deploy: DeployFunction = async ({ getNamedAccounts, deployments }) => {
     const paymasterContract = await ethers.getContract('PaymasterContract', deployer)
         await paymasterContract.setRelayHub(relayHubAddress)
         await paymasterContract.setTrustedForwarder(forwarderAddress)
+        await paymasterContract.setTarget(target.address)
 
 }
 

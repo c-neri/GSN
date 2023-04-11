@@ -20,6 +20,6 @@ contract Gasless is ERC2771Recipient{
 
     function addValue() public {
         // console.log("Unlock time is %o and block timestamp is %o", unlockTime, block.timestamp);
-        value += value;
+        value += 1;
     }
 }

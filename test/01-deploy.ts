@@ -34,13 +34,9 @@ describe("GSN", () => {
     const provider = new ethers.providers.JsonRpcProvider('http://127.0.0.1:8545/');
     config = { 
       paymasterAddress: paymaster.address,
-      loggerConfiguration: {
-          logLevel: 'debug'
-      }
     }
   
     relayProvider = await RelayProvider.newProvider({ provider: provider, config }).init()
-    
     const relayHubContract = new ethers.Contract(
       relayHubAddress,
       [
@@ -87,14 +83,8 @@ describe("GSN", () => {
       const fundAmount = ethers.utils.parseEther('0.1')
       await paymaster.setTarget(gasless.address)
     
-      //PAYMASTER BALANCE BEFORE
-      const balanceBefore = await relayHub.balanceOf(paymaster.address)
-    
       //PAYMASTER FUND
       await relayHub.depositFor(paymaster.address,{value:fundAmount})
-    
-      //PAYMASTER BALANCE AFTER
-      const balanceAfter = await relayHub.balanceOf(paymaster.address)
 
       //FOREIGN BALANCE BEFORE
       const balanceUserBefore = await ethers.provider.getBalance(deployer.address)
@@ -108,7 +98,7 @@ describe("GSN", () => {
       //FOREIGN BALANCE AFTER
       const balanceUserAfter = await ethers.provider.getBalance(deployer.address)
 
-
+      console.log(gasless.address)
       expect(balanceUserBefore).to.equal(balanceUserAfter)
     })
 

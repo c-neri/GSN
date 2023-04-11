@@ -3,7 +3,7 @@
 WHAT I DID:
 yarn start-node
 yarn start-gsn
-yarn hardhat test
+yarn hardhat test --network localhost
 
 ERROR:
 target is not a valid IRelayHub
