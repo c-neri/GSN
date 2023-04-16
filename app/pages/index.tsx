@@ -70,7 +70,7 @@ export default function Home() {
     functionName: 'addValue',
     enabled: !!isConnected
   })
-  const { write } = useContractWrite(config)
+  const { writeAsync } = useContractWrite(config)
 
   const { data, isError, isLoading } = useContractRead({
     address: contracts.localhost.contract as any,
@@ -115,8 +115,8 @@ export default function Home() {
           </div>
         </div>
           <Input placeholder='enter amount to fund'onChange={(e:any) => setValue(e.target.value)}/>
-           <Button shadow type="secondary" onClick={() => fundMe?.() }>FundMe</Button>
-          <Button shadow type="secondary" onClick={() => write?.() }>Execute</Button>
+           <Button shadow type="secondary" onClick={async() => await fundMe?.() }>FundMe</Button>
+          <Button shadow type="secondary" onClick={async() => await writeAsync?.() }>Execute</Button>
       </main>
   )
 }
